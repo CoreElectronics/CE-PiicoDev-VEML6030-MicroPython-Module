@@ -5,11 +5,12 @@
 from veml6030 import *
 from utime import sleep_ms
 
+# Initialise Sensor
 sensor = VEML6030()
 
 while True:
     # Read and print light data
     lightVal = sensor.read()
-    print("{} lux".format(lightVal)) # Open the plotter (View > Plotter) to observe light changing over time
+    print("{} lux".format(lightVal))
     
     sleep_ms(1000)
