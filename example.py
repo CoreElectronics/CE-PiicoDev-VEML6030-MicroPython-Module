@@ -2,15 +2,15 @@
 # This program reads light data from the PiicoDev VEML6030 ambient light sensor
 # and displays the result
 
-from veml6030 import *
+from PiicoDev_VEML6030 import PiicoDev_VEML6030
 from utime import sleep_ms
 
 # Initialise Sensor
-sensor = VEML6030()
+light = PiicoDev_VEML6030()
 
 while True:
     # Read and print light data
-    lightVal = sensor.read()
+    lightVal = light.read()
     print("{} lux".format(lightVal))
     
     sleep_ms(1000)
