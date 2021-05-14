@@ -18,23 +18,14 @@ _REG_ALS = b'\x04'
 
 _DEFAULT_SETTINGS = b'\x00' # initialise gain:1x, integration 100ms, persistence 1, disable interrupt
 
-    
 class PiicoDev_VEML6030(object):    
     def __init__(self, addr=_veml6030Address, i2c=i2c):
         self.i2c = i2c
         self.addr = addr
         self.res = 0.0288 # lx/bit
-#         try:     
-#             self.i2c.UnifiedWrite(self.addr, _ALS_CONF + _DEFAULT_SETTINGS)
         self.i2c.write8(self.addr, _ALS_CONF, _DEFAULT_SETTINGS)
-#         except Exception as e:
-#             print(e)
-#             print('Device 0x{:02X} not found'.format(self.addr))
-            
         
     def read(self):
         data = self.i2c.read16(self.addr, _REG_ALS)
-#         self.i2c.UnifiedWrite(self.addr, _REG_ALS, stop=False) #write address and repeat condition
-#         data = self.i2c.UnifiedRead(self.addr, 2) # returns a bytes object
         return int.from_bytes(data, 'little') * self.res
           
