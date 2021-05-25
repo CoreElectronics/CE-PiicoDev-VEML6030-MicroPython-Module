@@ -3,6 +3,7 @@
 # and displays the result
 
 from PiicoDev_VEML6030 import PiicoDev_VEML6030
+from time import sleep
 
 # Initialise Sensor
 light = PiicoDev_VEML6030()
