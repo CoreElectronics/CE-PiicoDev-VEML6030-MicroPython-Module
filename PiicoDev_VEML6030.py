@@ -31,6 +31,6 @@ class PiicoDev_VEML6030(object):
             data = self.i2c.read16(self.addr, _REG_ALS)
         except:
             print(i2c_err_str.format(self.addr))
-            return (float('NaN'), float('NaN'), float('NaN'))
+            return float('NaN')
         return int.from_bytes(data, 'little') * self.res
           
