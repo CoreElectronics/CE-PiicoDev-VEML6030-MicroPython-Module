@@ -7,8 +7,8 @@ compat_str = '\nUnified PiicoDev library out of date.  Get the latest module: ht
 
 # Registers
 _veml6030Address = 0x10
-_ALS_CONF = b'\x00'
-_REG_ALS = b'\x04'
+_ALS_CONF = 0x00
+_REG_ALS = 0x04
 
 _DEFAULT_SETTINGS = b'\x00' # initialise gain:1x, integration 100ms, persistence 1, disable interrupt
 
@@ -24,13 +24,12 @@ class PiicoDev_VEML6030(object):
         self.i2c = create_unified_i2c(bus=bus, freq=freq, sda=sda, scl=scl)
         self.addr = addr
         self.res = 0.0288 # lx/bit
-        self.i2c.write8(self.addr, _ALS_CONF, _DEFAULT_SETTINGS)
+        self.i2c.writeto_mem(self.addr, _ALS_CONF, _DEFAULT_SETTINGS)
         
     def read(self):
         try:
-            data = self.i2c.read16(self.addr, _REG_ALS)
+            data = self.i2c.readfrom_mem(self.addr, _REG_ALS, 2)
         except:
             print(i2c_err_str.format(self.addr))
             return float('NaN')
         return int.from_bytes(data, 'little') * self.res
-          
