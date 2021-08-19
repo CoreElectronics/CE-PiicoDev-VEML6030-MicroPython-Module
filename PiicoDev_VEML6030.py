@@ -23,7 +23,7 @@ class PiicoDev_VEML6030(object):
             print(compat_str)
         self.i2c = create_unified_i2c(bus=bus, freq=freq, sda=sda, scl=scl)
         self.addr = addr
-        self.res = 0.0288 # lx/bit
+        self.res = 0.0576 # lx/bit
         self.i2c.writeto_mem(self.addr, _ALS_CONF, _DEFAULT_SETTINGS)
         
     def read(self):
