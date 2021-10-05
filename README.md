@@ -41,6 +41,11 @@ Parameter | Type | Unit | Description
 --- | --- | --- | ---
 returned | float | lux | Ambient light
 
+### PiicoDev_VEML6030.setGain(gain)
+Parameter | Type | Range | Description
+--- | --- | --- | ---
+gain | float/int | 0.125, 0.5, 1, 2 | Set the gain of the device. Affects resolution and maximum possible illumination. See the [appnote](https://www.vishay.com/docs/84367/designingveml6030.pdf)
+
 # License
 This project is open source - please review the LICENSE.md file for further licensing information.
 
